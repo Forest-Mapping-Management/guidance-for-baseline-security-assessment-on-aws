@@ -233,6 +233,9 @@ def check_policies_for_secret_engine_access(policies):
                 statement = document['Statement']
             else:
                 statement = stmt
+            if 'Action' not in statement:
+                print(policy['PolicyArn'] + ' has no Action Key')
+                break
             if type(statement['Action']) == list:
                  actions = statement['Action']
             else:
