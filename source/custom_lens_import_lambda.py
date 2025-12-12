@@ -123,6 +123,9 @@ def check_billing_alarm_configured():
     
     response = cwt_client.describe_alarms(AlarmTypes=['MetricAlarm'])
     for alarm in response['MetricAlarms']:
+        if 'Namespace' not in alarm:
+            print(alarm + ' has no namespace')
+            continue
         if alarm['Namespace'] == 'AWS/Billing':
             selected_choice = 'so_08_cbay'
             break
@@ -131,6 +134,9 @@ def check_billing_alarm_configured():
         cwt_client_nv = boto3.client('cloudwatch', region_name='us-east-1')
         response = cwt_client_nv.describe_alarms(AlarmTypes=['MetricAlarm'])
         for alarm in response['MetricAlarms']:
+            if 'Namespace' not in alarm:
+                print(alarm + ' has no namespace')
+                continue
             if alarm['Namespace'] == 'AWS/Billing':
                 selected_choice = 'so_08_cbay'
                 break
