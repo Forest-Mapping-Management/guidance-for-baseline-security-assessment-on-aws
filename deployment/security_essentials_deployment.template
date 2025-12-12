@@ -407,7 +407,7 @@ Resources:
                response = cwt_client.describe_alarms(AlarmTypes=['MetricAlarm'])
                for alarm in response['MetricAlarms']:
                    if 'Namespace' not in alarm:
-                       print(alarm + ' has no namespace')
+                       print('alarm has no namespace')
                        continue
                    if alarm['Namespace'] == 'AWS/Billing':
                        selected_choice = 'so_08_cbay'
